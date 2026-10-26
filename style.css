@@ -2,3 +2,12 @@ body{
     background-color: #008000;
     margin: 0px;
 }
+
+.nav-bar{
+    display: block;
+    position: static;
+    background-color: #808000;
+    width: 100%-5px;
+    height: 50px;
+    border: #000000 solid 5px;
+}

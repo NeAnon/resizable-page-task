@@ -35,3 +35,50 @@ body{
     left: 25px;
     top: 25px;
 }
+
+/* Rects are ~0.25x the height of the topbar and ~1.5x its height as their width. */
+
+.rect{
+    display: block;
+    position: relative;
+    background-color: #0000FF;
+    width: 90px;
+    height: 5px; /* Accounting for border as well, these look a close to reference image? */
+    border: #000000 solid 5px;
+}
+
+/* The rects are spaced apart ~0.5x the height of the topbar and each occupy ~0.25x of its height.
+   Thus we can use 50px + 10px for the borders (so 60px) as our reference height. */
+
+.rects{
+    display: flex;
+    flex-direction: column;
+    height: 60px;
+    justify-content: space-between;
+    align-self: center; /* The rects are roughly centered compared to the ellipse, so this lines them up properly.*/
+}
+
+/* The space between rectangles and ellipse is ~0.5x the width of the nav bar, and the ellipse is ~1.5x its width.
+   This meants that the whole set (and the set moves as one, thus we can contain it in a single container) is ~60px x ~225 px*/
+
+.rects-and-ellipse{
+    display: flex;
+    width: 250px; 
+    justify-content: space-around;
+}
+
+
+/* The ellipse is a little bigger than the rects. Setting it to ~70-80px height gives it a good proportion 
+   when compared to the reference images. 
+   To make construction simpler, we can make a rectangle and give it 50% rounded corners, such that the curves meet and form a single, 
+   elliptical border. */
+
+.ellipse{
+    display: block;
+    position: relative;
+    background-color: #008080;
+    width: 90px;
+    height: 75px;
+    border-radius: 50%;
+    border: #000000 solid 5px;
+}

@@ -11,3 +11,27 @@ body{
     height: 50px;
     border: #000000 solid 5px;
 }
+
+/* Rhombus shapes have a little under 2x of topbar height as a length of their side, so that can be used to model their initial size. */
+
+.rhombus{
+    display: block;
+    position: relative;
+    background-color: #FF0000;
+    width: 90px;
+    height: 90px;
+    border: #000000 solid 5px;
+    rotate: 45deg;
+}
+
+/* These are eyeballed based on the reference images. */
+
+.top-rhombus{
+    left: 125px;
+    top: 25px;
+}
+
+.left-rhombus{
+    left: 25px;
+    top: 25px;
+}

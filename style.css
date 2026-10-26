@@ -58,7 +58,7 @@ body{
     align-self: center; /* The rects are roughly centered compared to the ellipse, so this lines them up properly.*/
 }
 
-/* The space between rectangles and ellipse is ~0.5x the width of the nav bar, and the ellipse is ~1.5x its width.
+/* The space between rectangles and ellipse is ~0.5x the height of the topbar, and the ellipse is ~1.5x its width.
    This meants that the whole set (and the set moves as one, thus we can contain it in a single container) is ~60px x ~225 px*/
 
 .rects-and-ellipse{
@@ -66,7 +66,6 @@ body{
     width: 250px; 
     justify-content: space-around;
 }
-
 
 /* The ellipse is a little bigger than the rects. Setting it to ~70-80px height gives it a good proportion 
    when compared to the reference images. 
@@ -80,5 +79,23 @@ body{
     width: 90px;
     height: 75px;
     border-radius: 50%;
+    border: #000000 solid 5px;
+}
+
+/* Measuring it out, the big text box has a height of just under 6 topbar heights. 350px is a good approximation.
+   The width, however, is juuust over 2.5x, so around 150px plus borders.
+   The text within seems to have a height almost exactly half the topbar, so 30px? 
+   It's also offset a little under half the topbar height from the top, 20px seems to be a close match.*/
+
+.text-box{
+    display: block;
+    position: relative;
+    background-color: #FFFFFF;
+    width: 160px;
+    height: 350px;
+    text-align: center;
+    padding-top: 20px;
+    font-size: 45px;    /*45px seems more correct, probably because it takes into account characters that go below the baseline, like y or f. */
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;  /* Not sure what the font in reference images is, but Calibri is a close enough match.*/
     border: #000000 solid 5px;
 }

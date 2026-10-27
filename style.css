@@ -116,6 +116,7 @@ body {
 
 .content {
     display: flex;
+    position: relative;
     flex-direction: row;
     justify-content: space-between;
 }
@@ -149,5 +150,18 @@ body {
 
     .content{
         flex-direction: column;
+    }
+}
+
+/* To eliminate sideways scrolling while avoiding just cropping the elements, we can simply scale the entirety of the content under extreme width conditions. */
+
+@media screen and (max-width: 250px) {
+    body {
+        transform: scale(calc(100cqw/250px));   /* If page width <= 250px (width of largest block element), scale the body to be appropriately smaller. */
+        transform-origin: top left;
+    }
+
+    .top-bar {
+        width: 240px;   /* Make sure that the top bar still covers the entire width of the screen (250px after taking borders into account). */
     }
 }

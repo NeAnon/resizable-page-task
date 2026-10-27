@@ -140,3 +140,14 @@ body {
         flex-direction: row;
     }
 }
+
+@media screen and (max-width: 582px) {
+    .text-box{
+        left: 55px; /* Eyeballed from reference image, comparing to ellipse position above. */
+        background-color: #0000FF;
+    }
+
+    .content{
+        flex-direction: column;
+    }
+}

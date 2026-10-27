@@ -101,7 +101,7 @@ body {
     position: relative;
     right: 20px;    /* We don't want the text box to be flush with the edge or the top. */
     top: 20px;
-    background-color: #FFFFFF;
+    background-color: #C83737; /* Setting the middle state as baseline to simplify the conditionals later. */
     width: 160px;
     height: 350px;
     text-align: center;
@@ -124,9 +124,19 @@ body {
 
 .shapes {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     width: 66%;
     justify-content: space-between;
 }
 
-/* TEMP: Try not to code at night next time. */
+/* Considering that we need to alter the textbox color depending on screen width anyway, this method can also be used to alter the layout. */
+
+@media screen and (min-width: 901px) {
+    .text-box{
+        background-color: #FFFFFF;
+    }
+
+    .shapes{
+        flex-direction: row;
+    }
+}

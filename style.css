@@ -65,6 +65,15 @@ body{
     display: flex;
     width: 250px; 
     justify-content: space-around;
+    align-self: center;
+}
+
+/* Because the rects and ellipse, beyond their initial layout, do not change position, we can use this to give them an absolute height buffer. 
+   This will be necessary later, as it's visible from the reference images that this set always has a fixed space between itself and the element above it.*/
+
+.rects-and-ellipse-wrapper{
+    display: block;
+    padding-top: 90px; /* This is the height of the topbar, which is the element above this set. */
 }
 
 /* The ellipse is a little bigger than the rects. Setting it to ~70-80px height gives it a good proportion 
@@ -90,6 +99,8 @@ body{
 .text-box{
     display: block;
     position: relative;
+    right: 20px;    /* We don't want the text box to be flush with the edge or the top.*/
+    top: 20px;
     background-color: #FFFFFF;
     width: 160px;
     height: 350px;
@@ -98,4 +109,22 @@ body{
     font-size: 45px;    /*45px seems more correct, probably because it takes into account characters that go below the baseline, like y or f. */
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;  /* Not sure what the font in reference images is, but Calibri is a close enough match.*/
     border: #000000 solid 5px;
+}
+
+/* Content is a box that contains all of the above elements, and controls their layout on the page.
+   According to reference images, we want the elements roughly evenly-spaced.*/
+
+.content{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+/* This container acts on everything but the textbox. It gives better control over the layout, and allows for later switching between >900px and <=900px layouts. */
+
+.shapes{
+    display: flex;
+    flex-direction: row;
+    width: 66%;
+    justify-content: space-between;
 }

@@ -13,20 +13,27 @@
 
     <div class="content">
         <!-- This is where the shapes go -->
-    
-        <div class="rhombuses"> 
-            <!-- Pair of red rhombuses -->
-            <div class="rhombus top-rhombus"></div>
-            <div class="rhombus left-rhombus"></div>
-        </div>
-    
-        <div class="rects-and-ellipse">
-            <!-- Pair of blue rectangles and a cyan ellipse (pardon the spelling mistake) -->
-            <div class="rects">
-                <div class="rect top-rect"></div>
-                <div class="rect bottom-rect"></div>
+
+        <div class="shapes">
+
+            <div class="rhombuses"> 
+                <!-- Pair of red rhombuses -->
+                <div class="rhombus top-rhombus"></div>
+                <div class="rhombus left-rhombus"></div>
             </div>
-            <div class="ellipse"></div>
+
+            <div class="rects-and-ellipse-wrapper">
+                <!-- Wrapper to keep the rectangle-ellipse set together, since it doesn't change -->
+
+                <div class="rects-and-ellipse">
+                    <!-- Pair of blue rectangles and a cyan ellipse - in a flex box to lay them out -->
+                    <div class="rects">
+                        <div class="rect top-rect"></div>
+                        <div class="rect bottom-rect"></div>
+                    </div>
+                    <div class="ellipse"></div>
+                </div>
+            </div>
         </div>
     
         <div class="text-box">

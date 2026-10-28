@@ -1,13 +1,14 @@
 body {
     background-color: #008000;
     margin: 0px;
+    overflow: hidden; /* This eliminates scrolling without issues, since the adjustments below keep everything always in frame. */
 }
 
 .top-bar {
     display: block;
     position: static;
     background-color: #808000;
-    width: 100%-5px;
+    width: calc(100%-10px);
     height: 50px;
     border: #000000 solid 5px;
 }
@@ -117,6 +118,7 @@ body {
 .content {
     display: flex;
     position: relative;
+    transform-origin: top left;
     flex-direction: row;
     justify-content: space-between;
 }
@@ -130,25 +132,26 @@ body {
     justify-content: space-between;
 }
 
-/* Considering that we need to alter the textbox color depending on screen width anyway, this method can also be used to alter the layout. */
-
-@media screen and (min-width: 901px) {
-    .text-box{
-        background-color: #FFFFFF;
-    }
-
-    .shapes{
-        flex-direction: row;
-    }
-}
+/* These need to re-scale at a larger height adjustment, due to the text-box moving below the other shape elements on the page. */
 
 @media screen and (max-width: 582px) {
-    .text-box{
+    .content {
+        transform: scale(min(1, calc(100vh/850px)));
+    }
+    
+    /* Adjusting the height of the topbar to keep it spanning the whole page when elements are re-scaled. */
+    
+    .top-bar {
+        height: calc(50px*min(1, calc(100vh/850px)));
+        border-width: calc(5px*min(1, calc(100vh/850px)));
+    }
+    
+    .text-box {
         left: 55px; /* Eyeballed from reference image, comparing to ellipse position above. */
         background-color: #0000FF;
     }
-
-    .content{
+    
+    .content {
         flex-direction: column;
     }
 }
@@ -156,12 +159,62 @@ body {
 /* To eliminate sideways scrolling while avoiding just cropping the elements, we can simply scale the entirety of the content under extreme width conditions. */
 
 @media screen and (max-width: 250px) {
-    body {
-        transform: scale(calc(100cqw/250px));   /* If page width <= 250px (width of largest block element), scale the body to be appropriately smaller. */
+    .content {
+        transform: scale(min(calc(100vw/250px), 
+                             calc(100vh/850px)));   /* If page width <= 250px (width of largest block element), scale the body to be appropriately smaller. */
+    }
+    
+    /* Topbar adjustment carries over from the <583px ruleset. */
+}
+
+/* To eliminate cutoff and scrolling when under extreme height restrictions, we use this to scale their properties. 
+To avoid conflict with the other scaling options, this should only work when the elements are in the >=583px states. */
+
+@media screen and ((min-width: 583px) and (max-height: 475px)) {
+    .shapes, .text-box {
+        transform: scale(min(1, calc(100vh/475px)));
+    }
+    
+    .shapes {
+        transform-origin: top left;
+    }
+    
+    .text-box {
+        transform-origin: top right;
+        top: calc(20px * min(1, calc(100vh/475px)))
+    }
+    
+    .top-bar {
+        height: calc(50px*min(1, calc(100vh/475px)));       /* Using the template for height adjustment below to make sure proportions are maintained under small heights. */
+        border-width: calc(5px*min(1, calc(100vh/475px)));  
+    }
+}
+
+/* Considering that we need to alter the textbox color depending on screen width anyway, this method can also be used to alter the layout. */
+
+@media screen and (min-width: 901px) {
+    .text-box {
+        background-color: #FFFFFF;
+    }
+
+    .shapes {
+        flex-direction: row;
+        transform: scale(1);
+    }
+
+    /* The below only matter for rescaling under small heights. */
+
+    .rects-and-ellipse-wrapper {
+        padding-top: calc(90px * min(1, calc(100vh/475px)));;
+    }
+
+    .rhombuses {
+        transform: scale(min(1, calc(100vh/475px)));
         transform-origin: top left;
     }
 
-    .top-bar {
-        width: 240px;   /* Make sure that the top bar still covers the entire width of the screen (250px after taking borders into account). */
+    .rects-and-ellipse {
+        transform: scale(min(1, calc(100vh/475px)));
+        transform-origin: top center;
     }
 }
